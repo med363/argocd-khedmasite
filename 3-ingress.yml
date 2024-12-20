@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-app
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header Host "209.38.112.8"; # Ensures the original Host header is passed to the backend
+      proxy_set_header X-Forwarded-Host "209.38.112.8"; # Forwarding the host header for better routing visibility
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - temp1234567.ddns.net
+    secretName: example-app-tls
+  rules:
+  - host: temp1234567.ddns.net
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: example-service
+            port:
+              number: 80
+      - path: /api/
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-service  
+            port:
+              number: 8080

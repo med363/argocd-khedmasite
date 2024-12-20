@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: django-config
+  namespace: default
+data:
+  DEBUG: "True"
+  REDIS_HOST: "khedma-redis"
+  DB_HOST: "postgres-service"
+  ALLOWED_HOSTS: "temp1234567.ddns.net,backend-service,example-service"
+  REACT_ADDRESS: "http://example-service"
