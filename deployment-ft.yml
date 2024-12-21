@@ -25,7 +25,7 @@ spec:
       - name: dockerhub-secret # Make sure this secret exists and is correct
       containers:
       - name: example-app
-        image: mohamedamineblibech/frontend:38
+        image: mohamedamineblibech/frontend:40
         ports:
         - containerPort: 3000
         env:
