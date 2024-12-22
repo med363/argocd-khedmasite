@@ -9,3 +9,4 @@ data:
   DB_HOST: "postgres-service"
   ALLOWED_HOSTS: "temp1234567.ddns.net,backend-service,example-service"
   REACT_ADDRESS: "http://example-service"
+  CSRF_TRUSTED_ORIGINS: "http://example-service:80,http://backend-service:8080,http://temp1234567.ddns.net,https://temp1234567.ddns.net"
