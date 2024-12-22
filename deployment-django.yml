@@ -19,7 +19,7 @@ spec:
       hostname: backend-service
       containers:
         - name: backend-app
-          image: mohamedamineblibech/backend:44
+          image: mohamedamineblibech/backend:v1.4
           ports:
             - containerPort: 80
           envFrom:
