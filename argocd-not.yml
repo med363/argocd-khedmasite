@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: argocd-notification-controller
+  name: argocd-notifications-controller
   namespace: argocd
 spec:
   replicas: 1
