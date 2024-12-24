@@ -16,9 +16,9 @@ spec:
     spec:
       containers:
       - name: notification-controller
-        image: argoprojlabs/argocd-notifications:v1.2.1
+        image: quay.io/argoproj/argocd:v2.13.2
         ports:
-        - containerPort: 9090
+        - containerPort: 9001
         volumeMounts:
         - name: notifications-config
           mountPath: /app/config
