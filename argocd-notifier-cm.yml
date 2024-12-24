@@ -1,12 +1,4 @@
 apiVersion: v1
-kind: Secret
-metadata:
-  name: argocd-notifications-secret
-  namespace: argocd
-stringData:
-  slack-token: "xoxb-8217684139922-8203226687735-wgxfPW1FRJsfGjt5bc8ja2mH"
-ubuntu@ubuntu:~/Desktop/argocd-khedmasite$ cat argocd-notifications-cm.yaml
-apiVersion: v1
 kind: ConfigMap
 metadata:
   name: argocd-notifications-cm
