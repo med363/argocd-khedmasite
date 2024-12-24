@@ -1,63 +1,63 @@
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: argocd-notifications-controller
-  namespace: argocd
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: argocd-notifications-controller
-  template:
-    metadata:
-      labels:
-        app: argocd-notifications-controller
-    spec:
-      containers:
-      - name: notification-controller
-        image: quay.io/argoproj/argocd:v2.13.2
-        ports:
-        - containerPort: 9001
-        volumeMounts:
-        - name: notifications-config
-          mountPath: /app/config
-      volumes:
-      - name: notifications-config
-        configMap:
-          name: argocd-notifications-cm
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: argocd-notifications-cm
-  namespace: argocd
-data:
-  notifications.yaml: |
-    apiVersion: argoproj.io/v1alpha1
-    kind: Config
-    triggers:
-      on-app-sync-succeeded:
-        recipient: slack:argocd_wetekup
-        template: app-sync-succeeded
-      on-app-sync-failed:
-        recipient: slack:argocd_wetekup
-        template: app-sync-failed
-    templates:
-      app-sync-succeeded:
-        message: |
-          Application {{.app.metadata.name}} has been successfully synced.
-      app-sync-failed:
-        message: |
-          Application {{.app.metadata.name}} failed to sync.
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: argocd-notifications-slack-cm
-  namespace: argocd
-data:
-  config.yaml: |
-    slack:
-      token: xoxb-8217684139922-8203226687735-wgxfPW1FRJsfGjt5bc8ja2mH
-      defaultRecipient: argocd_wetekup
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: argocd-notifications-controller
+#   namespace: argocd
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: argocd-notifications-controller
+#   template:
+#     metadata:
+#       labels:
+#         app: argocd-notifications-controller
+#     spec:
+#       containers:
+#       - name: notification-controller
+#         image: quay.io/argoproj/argocd:v2.13.2
+#         ports:
+#         - containerPort: 9001
+#         volumeMounts:
+#         - name: notifications-config
+#           mountPath: /app/config
+#       volumes:
+#       - name: notifications-config
+#         configMap:
+#           name: argocd-notifications-cm
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: argocd-notifications-cm
+#   namespace: argocd
+# data:
+#   notifications.yaml: |
+#     apiVersion: argoproj.io/v1alpha1
+#     kind: Config
+#     triggers:
+#       on-app-sync-succeeded:
+#         recipient: slack:argocd_wetekup
+#         template: app-sync-succeeded
+#       on-app-sync-failed:
+#         recipient: slack:argocd_wetekup
+#         template: app-sync-failed
+#     templates:
+#       app-sync-succeeded:
+#         message: |
+#           Application {{.app.metadata.name}} has been successfully synced.
+#       app-sync-failed:
+#         message: |
+#           Application {{.app.metadata.name}} failed to sync.
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: argocd-notifications-slack-cm
+#   namespace: argocd
+# data:
+#   config.yaml: |
+#     slack:
+#       token: xoxb-8217684139922-8203226687735-wgxfPW1FRJsfGjt5bc8ja2mH
+#       defaultRecipient: argocd_wetekup
