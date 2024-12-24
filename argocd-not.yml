@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: notification-controller
-        image: argoproj/argocd-notifications:v1.2.0 # Replace with the latest version
+        image: argoprojlabs/argocd-notifications:v1.2.1
         ports:
         - containerPort: 9090
         volumeMounts:
