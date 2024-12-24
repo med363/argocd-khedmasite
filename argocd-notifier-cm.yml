@@ -12,7 +12,7 @@ metadata:
   name: argocd-notifications-cm
 data:
   context: |
-    argocdUrl: https://143.244.207.133/
+    argocdUrl: http://143.244.207.133/
   service.slack: |
     token: $slack-token  # use as it is
   defaultTriggers: |
