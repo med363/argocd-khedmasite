@@ -6,8 +6,10 @@ metadata:
 data:
   context: |
     argocdUrl: http://143.244.207.133/
-  service.slack: |
-    token: $slack-token  # use as it is
+  config.yaml: |
+    service.slack:
+      token: $slack-token
+      default: argocd_wetekup
   defaultTriggers: |
     - on-deployed
   trigger.on-deployed: |
