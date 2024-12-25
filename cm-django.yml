@@ -7,6 +7,6 @@ data:
   DEBUG: "True"
   REDIS_HOST: "khedma-redis"
   DB_HOST: "postgres-service"
-  ALLOWED_HOSTS: "temp1234567.ddns.net,backend-service,example-service"
+  ALLOWED_HOSTS: "temp1234567.ddns.net,*.svc.cluster.local,example-service"
   REACT_ADDRESS: "http://example-service"
  
