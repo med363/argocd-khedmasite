@@ -16,7 +16,7 @@ spec:
         - name: dockerhub-secret
       securityContext:
         fsGroup: 1000
-      hostname: backend-service
+      hostname: temp1234567.ddns. net
       containers:
         - name: backend-app
           image: mohamedamineblibech/backend:v1.110
@@ -39,7 +39,7 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: default
-  name: backend-service
+  name: temp1234567.ddns.net
   labels:
     app: backend-app
 spec:
