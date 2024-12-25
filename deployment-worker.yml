@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: celery-worker
-          image: mohamedamineblibech/backend:v1.111
+          image: mohamedamineblibech/backend:v1.112
           command: ['sh', '-c', "cd /django/khedma && celery -A khedma worker -l INFO"]
           envFrom:
             - secretRef:
