@@ -35,19 +35,34 @@ spec:
           persistentVolumeClaim:
             claimName: media-pvc
 ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: backend-service
+#   namespace: default
+#   labels:
+#     app: backend-app
+# spec:
+#   # type: ExternalName
+#   # externalName: temp1234567.ddns.net
+#   type: ClusterIP
+#   ports:
+#     - protocol: TCP
+#       port: 8080  # The port your backend is listening on (on the external server)
+#       targetPort: 80
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-service
   namespace: default
+  name: backend-service
   labels:
     app: backend-app
 spec:
-  # type: ExternalName
-  # externalName: temp1234567.ddns.net
   type: ClusterIP
+  selector:
+    app: backend-app
   ports:
     - protocol: TCP
-      port: 8080  # The port your backend is listening on (on the external server)
+      name: http
+      port: 8080
       targetPort: 80
-
