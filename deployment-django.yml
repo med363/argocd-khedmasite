@@ -38,17 +38,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: default
   name: backend-service
+  namespace: default
   labels:
     app: backend-app
 spec:
-  type: ClusterIP
-  selector:
-    app: backend-app
+  type: ExternalName
+  externalName: temp1234567.ddns.net
   ports:
     - protocol: TCP
-      name: http
-      port: 8080
+      port: 8080  # The port your backend is listening on (on the external server)
       targetPort: 80
 
