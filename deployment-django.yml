@@ -43,8 +43,9 @@ metadata:
   labels:
     app: backend-app
 spec:
-  type: ExternalName
-  externalName: temp1234567.ddns.net
+  # type: ExternalName
+  # externalName: temp1234567.ddns.net
+  type: ClusterIP
   ports:
     - protocol: TCP
       port: 8080  # The port your backend is listening on (on the external server)
