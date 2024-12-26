@@ -30,6 +30,5 @@ spec:
         backend:
           service:
             name: backend-service  
-            # name: temp1234567.ddns.net
             port:
               number: 8080
