@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: celery-beat
-          image: mohamedamineblibech/backend:v1.124
+          image: mohamedamineblibech/backend:v1.125
           command: ['sh', '-c', "cd /django/khedma && celery -A khedma beat -l INFO"]
           envFrom:
             - secretRef:
