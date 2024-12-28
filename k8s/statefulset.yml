@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  namespace: default
   name: postgres-statefulset
+  namespace: default
 spec:
-  serviceName: postgres-service
+  serviceName: "postgres-service"
   replicas: 2
   selector:
     matchLabels:
@@ -26,30 +26,15 @@ spec:
           ports:
             - containerPort: 5432
           volumeMounts:
-            - name: postgres-volume
+            - name: postgres-volume-mount
               mountPath: /var/lib/postgresql/data
-      securityContext:
-        fsGroup: 999
   volumeClaimTemplates:
     - metadata:
-        name: postgres-volume
+        name: postgres-volume-mount
       spec:
         accessModes: 
           - ReadWriteOnce
         resources:
           requests:
             storage: 2Gi
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: postgres-service
-  namespace: default
-spec:
-  clusterIP: None  # Headless service for StatefulSet
-  selector:
-    app: postgres-container
-  ports:
-    - protocol: TCP
-      port: 5432
-      targetPort: 5432
+        storageClassName: do-block-storage
