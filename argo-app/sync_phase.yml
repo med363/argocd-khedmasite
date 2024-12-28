@@ -13,7 +13,7 @@ spec:
     server: "https://kubernetes.default.svc"
   project: default
   source:
-    path: ./
+    path: k8s
     repoURL: "https://github.com/med363/argocd-khedmasite.git"
     targetRevision: HEAD
     directory:
