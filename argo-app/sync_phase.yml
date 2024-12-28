@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sync-phases
+  namespace: argocd # The namespace where ArgoCD is running
+  annotations:
+    notifications.argoproj.io/subscribe.on-deployed.slack: argocd_wetekup
+    notifications.argoproj.io/subscribe.on-sync-failed.slack: argocd_wetekup
+    notifications.argoproj.io/subscribe.on-sync-succeeded.slack: argocd_wetekup
+spec:
+  destination:
+    namespace: default # The namespace where the application will be deployed
+    server: "https://kubernetes.default.svc"
+  project: default
+  source:
+    path: ./
+    repoURL: "https://github.com/med363/argocd-khedmasite.git"
+    targetRevision: HEAD
+    directory:
+      recurse: true
+  syncPolicy:
+    automated:
+      prune: true # Ensures deletion of resources that have been removed or renamed
+    syncOptions:
+      - CreateNamespace=true
