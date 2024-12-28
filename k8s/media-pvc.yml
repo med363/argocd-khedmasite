@@ -6,7 +6,7 @@ metadata:
   labels:
     type: block-storage
 spec:
-  storageClassName: do-block-storage
+  storageClassName: do-media-storage  # New StorageClass for media
   accessModes:
     - ReadWriteOnce
   resources:
