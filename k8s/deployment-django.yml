@@ -28,18 +28,18 @@ spec:
                 name: kh-secret
             - configMapRef:
                 name: django-config
-      #     volumeMounts:
-      #       - name: media-volume-mount
-      #         mountPath: /django/khedma/media
-      # volumes:
-      #   - name: media-volume-mount
-      #     persistentVolumeClaim:
-      #       claimName: media-pvc
-        volumeMounts:
-          - name: media-0
-            mountPath: /django/khedma/media0
-          - name: media-1
-            mountPath: /django/khedma/media1
+          volumeMounts:
+            - name: media-volume-mount
+              mountPath: /django/khedma/media
+      volumes:
+        - name: media-volume-mount
+          persistentVolumeClaim:
+            claimName: media-pvc
+        # volumeMounts:
+        #   - name: media-0
+        #     mountPath: /django/khedma/media0
+        #   - name: media-1
+        #     mountPath: /django/khedma/media1
       volumes:
         - name: media-0
           persistentVolumeClaim:
