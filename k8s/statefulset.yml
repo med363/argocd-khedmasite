@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   serviceName: "postgres-service"
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: postgres-container
@@ -38,9 +38,11 @@ spec:
           - ReadWriteOnce
         resources:
           requests:
-            storage: 2Gi
-        storageClassName: do-block-storage
+            storage: 20Gi
+        storageClassName: postgres-storage
+
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
