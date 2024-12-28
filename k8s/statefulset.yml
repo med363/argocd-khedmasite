@@ -33,8 +33,8 @@ spec:
         name: postgres-volume-mount
       spec:
         accessModes: 
-          - ReadWriteOnce
+          - ReadWriteOnce # Matches DigitalOcean block storage capabilities
         resources:
           requests:
             storage: 2Gi
-        storageClassName: do-block-storage
+        storageClassName: do-block-storage # Refers to DigitalOcean block storage

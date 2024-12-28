@@ -6,9 +6,9 @@ metadata:
   labels:
     type: block-storage
 spec:
-  storageClassName: do-block-storage  # Refers to the defined StorageClass
+  storageClassName: do-block-storage
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteOnce # DigitalOcean block storage supports RWO
   resources:
     requests:
       storage: 2Gi

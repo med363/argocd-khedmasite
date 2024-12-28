@@ -4,4 +4,7 @@ metadata:
   name: do-block-storage
 provisioner: dobs.csi.digitalocean.com
 reclaimPolicy: Retain
-volumeBindingMode: WaitForFirstConsumer
+volumeBindingMode: Immediate
+parameters:
+  fsType: ext4
+  replication-type: none
