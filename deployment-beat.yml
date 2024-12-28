@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: default
   name: celery-beat
   labels:
     deployment: celery-beat
@@ -16,7 +17,7 @@ spec:
     spec:
       containers:
         - name: celery-beat
-          image: mohamedamineblibech/backend:v1.97
+          image: mohamedamineblibech/backend:v1.134
           command: ['sh', '-c', "cd /django/khedma && celery -A khedma beat -l INFO"]
           envFrom:
             - secretRef:
