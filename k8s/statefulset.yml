@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   serviceName: "postgres-service"
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: postgres-container
@@ -14,6 +14,8 @@ spec:
       labels:
         app: postgres-container
     spec:
+      securityContext:
+        fsGroup: 999 # Postgres UID to fix volume access
       containers:
         - name: postgres-container
           image: postgres:15.3-alpine
@@ -26,15 +28,28 @@ spec:
           ports:
             - containerPort: 5432
           volumeMounts:
-            - name: postgres-volume-mount
+            - name: postgres-data
               mountPath: /var/lib/postgresql/data
   volumeClaimTemplates:
     - metadata:
-        name: postgres-volume-mount
+        name: postgres-data
       spec:
-        accessModes: 
-          - ReadWriteOnce # Matches DigitalOcean block storage capabilities
+        accessModes:
+          - ReadWriteOnce
         resources:
           requests:
             storage: 2Gi
-        storageClassName: do-block-storage # Refers to DigitalOcean block storage
+        storageClassName: do-block-storage
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+  namespace: default
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5432
+      targetPort: 5432
+  selector:
+    app: postgres-container
