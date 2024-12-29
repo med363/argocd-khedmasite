@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: django-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: backend-app
@@ -17,6 +17,13 @@ spec:
       securityContext:
         fsGroup: 1000
       hostname: backend-service
+      # affinity:
+      #   podAffinity:
+      #     requiredDuringSchedulingIgnoredDuringExecution:
+      #       - labelSelector:
+      #           matchLabels:
+      #             app: backend-app
+      #         topologyKey: "kubernetes.io/hostname"
       containers:
         - name: backend-app
           image: mohamedamineblibech/backend:v1.134
@@ -34,6 +41,8 @@ spec:
         - name: media-data
           persistentVolumeClaim:
             claimName: media-pvc
+
+
 
 ---
 apiVersion: v1
