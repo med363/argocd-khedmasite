@@ -35,15 +35,12 @@ spec:
             - configMapRef:
                 name: django-config
           volumeMounts:
-            - name: media-data
+            - name: media-volume-mount
               mountPath: /django/khedma/media
       volumes:
-        - name: media-data
+        - name: media-volume-mount
           persistentVolumeClaim:
-            claimName: media-pvc
-
-
-
+            claimName: media-pvc-local
 ---
 apiVersion: v1
 kind: Service

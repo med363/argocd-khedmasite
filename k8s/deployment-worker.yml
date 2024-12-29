@@ -30,5 +30,5 @@ spec:
       volumes:
         - name: media-volume-mount
           persistentVolumeClaim:
-            claimName: media-pvc
+            claimName: media-pvc-local
             ##
