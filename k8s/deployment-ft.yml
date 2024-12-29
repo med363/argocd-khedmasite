@@ -39,6 +39,13 @@ spec:
           value: "3000"
         - name: DANGEROUSLY_DISABLE_HOST_CHECK
           value: "true"
+        # resources:
+        #   requests:
+        #     memory: "500Mi"
+        #     cpu: "500m"
+        #   limits:
+        #     memory: "800Mi"
+        #     cpu: "500m"
         # Uncomment volumeMounts if you are using secrets or configMaps
         # volumeMounts:
         # - name: secret-volume
