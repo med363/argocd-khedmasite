@@ -1,10 +1,10 @@
+
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
-  name: postgres-statefulset
   namespace: default
+  name: postgres-deployment
 spec:
-  serviceName: postgres
   replicas: 2
   selector:
     matchLabels:
@@ -26,18 +26,12 @@ spec:
           ports:
             - containerPort: 5432
           volumeMounts:
-            - name: postgres-data
-              mountPath: /var/lib/postgresql/db
-  volumeClaimTemplates:
-    - metadata:
-        name: postgres-data
-      spec:
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: 5Gi
-        storageClassName: postgres-storage
+            - name: postgres-volume-mount
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-volume-mount
+          persistentVolumeClaim:
+            claimName: postgres-pvc
       #     volumeMounts:
       #       - name: postgres-0
       #         mountPath: /var/lib/postgresql/data0

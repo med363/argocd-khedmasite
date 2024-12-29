@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: default
   name: django-deployment
 spec:
   replicas: 2
@@ -29,39 +28,24 @@ spec:
             - configMapRef:
                 name: django-config
           volumeMounts:
-            - name: media-volume-mount
+            - name: media-data
               mountPath: /django/khedma/media
       volumes:
-        - name: media-volume-mount
+        - name: media-data
           persistentVolumeClaim:
             claimName: media-pvc
-        # volumeMounts:
-        #   - name: media-0
-        #     mountPath: /django/khedma/media0
-        #   - name: media-1
-        #     mountPath: /django/khedma/media1
-      volumes:
-        - name: media-0
-          persistentVolumeClaim:
-            claimName: media-pvc-0
-        - name: media-1
-          persistentVolumeClaim:
-            claimName: media-pvc-1
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: default
   name: backend-service
+  namespace: default
   labels:
     app: backend-app
 spec:
   type: ClusterIP
-  selector:
-    app: backend-app
   ports:
     - protocol: TCP
-      name: http
-      port: 8080
+      port: 8080  # The port your backend is listening on (on the external server)
       targetPort: 80

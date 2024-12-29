@@ -4,8 +4,8 @@ metadata:
   name: postgres-statefulset
   namespace: default
 spec:
-  serviceName: "postgres-service"
-  replicas: 2
+  serviceName: "postgres-headless"
+  replicas: 1
   selector:
     matchLabels:
       app: postgres-container
@@ -14,8 +14,6 @@ spec:
       labels:
         app: postgres-container
     spec:
-      securityContext:
-        fsGroup: 999 # Postgres UID to fix volume access
       containers:
         - name: postgres-container
           image: postgres:15.3-alpine
@@ -40,18 +38,29 @@ spec:
           requests:
             storage: 20Gi
         storageClassName: postgres-storage
-
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: postgres-headless
+#   labels:
+#     app: postgres-container
+# spec:
+#   ports:
+#     - port: 5432
+#       name: postgres
+#   clusterIP: None  # Headless service for StatefulSet
+#   selector:
+#     app: postgres-container
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
   name: postgres-service
-  namespace: default
 spec:
-  type: ClusterIP
-  ports:
-    - port: 5432
-      targetPort: 5432
   selector:
     app: postgres-container
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
