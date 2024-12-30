@@ -52,3 +52,7 @@ metadata:
 spec:
   type: ExternalName
   externalName: temp1234567.ddns.net
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
