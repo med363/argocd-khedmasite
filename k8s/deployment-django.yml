@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: django-deployment
-  # namespace: default
-###
 spec:
   replicas: 2
   selector:
@@ -47,13 +45,16 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-service
   namespace: default
+  name: backend-service
   labels:
     app: backend-app
 spec:
   type: ClusterIP
+  selector:
+    app: backend-app
   ports:
     - protocol: TCP
-      port: 8080  # The port your backend is listening on (on the external server)
+      name: http
+      port: 8080
       targetPort: 80
