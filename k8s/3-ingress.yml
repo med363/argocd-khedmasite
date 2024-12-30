@@ -6,8 +6,8 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      proxy_set_header Host "209.38.112.8"; # Ensures the original Host header is passed to the backend
-      proxy_set_header X-Forwarded-Host "209.38.112.8"; # Forwarding the host header for better routing visibility
+      proxy_set_header Host "temp1234567.ddns.net"; # Ensures the original Host header is passed to the backend
+      proxy_set_header X-Forwarded-Host "temp1234567.ddns.net"; # Forwarding the host header for better routing visibility
 spec:
   ingressClassName: nginx
   tls:
