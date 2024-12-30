@@ -28,7 +28,7 @@ spec:
       #         topologyKey: "kubernetes.io/hostname"
       containers:
         - name: backend-app
-          image: mohamedamineblibech/backend:v1.151
+          image: mohamedamineblibech/backend:v1.152
           ports:
             - containerPort: 80
           envFrom:
