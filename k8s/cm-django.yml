@@ -9,7 +9,7 @@ data:
   DB_HOST: "postgres-service"
   ALLOWED_HOSTS: "temp1234567.ddns.net,backend-service,example-service"
   REACT_ADDRESS: "http://example-service"
-  CORS_ALLOWED_ORIGINS: "http://example-service:80,http://backend-service:8080,http://temp1234567.ddns.net,https://temp1234567.ddns.net"
+  # CORS_ALLOWED_ORIGINS: "http://example-service:80,http://backend-service:8080,http://temp1234567.ddns.net,https://temp1234567.ddns.net"
   SIMPLE_JWT_AUTH_HEADER_TYPES: "JWT"
   JWT_ACCESS_TOKEN_LIFETIME: "60"  # Access token lifetime in minutes
   JWT_REFRESH_TOKEN_LIFETIME: "1440"  # Refresh token lifetime in minutes
