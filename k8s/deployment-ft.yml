@@ -41,6 +41,10 @@ spec:
           value: "3000"
         - name: DANGEROUSLY_DISABLE_HOST_CHECK
           value: "true"
+        command:
+        - sh
+        - -C
+        - DEBUG=False
         # resources:
         #   requests:
         #     memory: "500Mi"
