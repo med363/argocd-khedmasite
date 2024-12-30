@@ -30,9 +30,9 @@ spec:
         - containerPort: 3000
         env:
         - name: REACT_APP_API_URL
-          value: "http://temp1234567.ddns.net"
+          value: "http://backend-service:8080"
         - name: REACT_APP_PUBLIC_FOLDER
-          value: "http://temp1234567.ddns.net/media/images/"
+          value: "http://backend-service:8080/media/images/"
         - name: HOST
           value: "0.0.0.0"
         - name: PORT
