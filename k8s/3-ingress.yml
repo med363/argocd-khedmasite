@@ -35,10 +35,4 @@ spec:
             name: backend-service  
             port:
               number: 80
-      - path: /media/
-        pathType: Prefix
-        backend:
-          service:
-            name: temp1234567.ddns.net  
-            port:
-              number: 80
+
