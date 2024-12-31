@@ -30,11 +30,9 @@ spec:
         - containerPort: 3000
         env:
         - name: REACT_APP_API_URL
-          value: "http://backend-service:80" # Proxy to backend service
+          value: "http://backend-service.default.svc.cluster.local"
         - name: REACT_APP_PUBLIC_FOLDER
-          value: "http://backend-service:80/media/images/"
-        - name: REACT_APP_PROXY
-          value: "http://backend-service:80" # Add a custom proxy field for your app
+          value: "http://backend-service.default.svc.cluster.local/media/images/"
         - name: HOST
           value: "0.0.0.0"
         - name: PORT
