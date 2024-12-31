@@ -10,16 +10,15 @@ metadata:
 spec:
   destination:
     namespace: default # The namespace where the application will be deployed
-    server: "https://kubernetes.default.svc" # Ensure this is correct for your cluster, usually this is fine in most setups
+    server: "https://kubernetes.default.svc" # Default Kubernetes API endpoint
   project: default
   source:
     path: k8s # Directory where your manifests are stored in the repo
-    repoURL: "https://github.com/med363/argocd-khedmasite.git" # Make sure this is the correct repository URL
-    targetRevision: HEAD # Can be a specific branch, tag, or commit
-    directory:
-      recurse: true # Ensures all resources within the directory are included
+    repoURL: "https://github.com/med363/argocd-khedmasite.git" # Repository URL
+    targetRevision: HEAD # Branch, tag, or commit to deploy
   syncPolicy:
     automated:
-      prune: true # Ensures deletion of resources that have been removed or renamed from the repo
+      prune: true # Automatically delete old resources
+      selfHeal: true # Correct drifted resources automatically
     syncOptions:
-      - CreateNamespace=true # Automatically creates namespaces if they don't exist
+      - CreateNamespace=true # Create namespace if it doesn't exist

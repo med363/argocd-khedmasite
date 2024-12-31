@@ -1,66 +1,59 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
-  name: postgres-statefulset
-  namespace: default
+  name: django-deployment
+  # namespace: default
+###
 spec:
-  serviceName: "postgres-headless"
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: postgres-container
+      app: backend-app
   template:
     metadata:
       labels:
-        app: postgres-container
+        app: backend-app
     spec:
+      imagePullSecrets:
+        - name: dockerhub-secret
+      securityContext:
+        fsGroup: 1000
+      hostname: backend-service
+      # affinity:
+      #   podAffinity:
+      #     requiredDuringSchedulingIgnoredDuringExecution:
+      #       - labelSelector:
+      #           matchLabels:
+      #             app: backend-app
+      #         topologyKey: "kubernetes.io/hostname"
       containers:
-        - name: postgres-container
-          image: postgres:15.3-alpine
-          env:
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: kh-secret
-                  key: POSTGRES_PASSWORD
+        - name: backend-app
+          image: mohamedamineblibech/backend:v1.155
           ports:
-            - containerPort: 5432
+            - containerPort: 80
+          envFrom:
+            - secretRef:
+                name: kh-secret
+            - configMapRef:
+                name: django-config
           volumeMounts:
-            - name: postgres-data
-              mountPath: /var/lib/postgresql/data
-  volumeClaimTemplates:
-    - metadata:
-        name: postgres-data
-      spec:
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: 20Gi
-        storageClassName: postgres-storage
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: postgres-headless
-#   labels:
-#     app: postgres-container
-# spec:
-#   ports:
-#     - port: 5432
-#       name: postgres
-#   clusterIP: None  # Headless service for StatefulSet
-#   selector:
-#     app: postgres-container
+            - name: media-volume-mount
+              mountPath: /django/khedma/media
+      volumes:
+        - name: media-volume-mount
+          persistentVolumeClaim:
+            claimName: media-pvc-local
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres-service
+  name: backend-service
+  namespace: default
+  labels:
+    app: backend-app
 spec:
-  selector:
-    app: postgres-container
+  type: ClusterIP
   ports:
     - protocol: TCP
-      port: 5432
-      targetPort: 5432
+      port: 8080  # The port your backend is listening on (on the external server)
+      targetPort: 80

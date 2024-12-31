@@ -8,6 +8,9 @@ metadata:
     nginx.ingress.kubernetes.io/configuration-snippet: |
       proxy_set_header Host "209.38.112.8"; 
       proxy_set_header X-Forwarded-Host "209.38.112.8"; 
+      if ($request_uri ~* ^/api/) {
+        return 301 http://temp1234567.ddns.net$request_uri;
+      }
 spec:
   ingressClassName: nginx
   tls:
@@ -30,5 +33,12 @@ spec:
         backend:
           service:
             name: backend-service  
+            port:
+              number: 80
+      - path: /media/
+        pathType: Prefix
+        backend:
+          service:
+            name: temp1234567.ddns.net  
             port:
               number: 80
