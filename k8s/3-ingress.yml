@@ -32,7 +32,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: backend-service  
-            port:
-              number: 80
+            name: temp1234567.ddns.net  
+
 
