@@ -16,7 +16,7 @@ spec:
         - name: dockerhub-secret
       securityContext:
         fsGroup: 1000
-      hostname: backend-service
+      # hostname: backend-service
       # affinity:
       #   podAffinity:
       #     requiredDuringSchedulingIgnoredDuringExecution:
