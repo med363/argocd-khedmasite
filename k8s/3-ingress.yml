@@ -7,16 +7,16 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/proxy-body-size: "10m"  # Adjust size as needed
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      proxy_set_header Host "209.38.112.8"; 
-      proxy_set_header X-Forwarded-Host "209.38.112.8"; 
+      proxy_set_header Host "209.38.113.78"; 
+      proxy_set_header X-Forwarded-Host "209.38.113.78"; 
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - temp1234567.ddns.net
+    - khedma123456789.ddns.net
     secretName: example-app-tls
   rules:
-  - host: temp1234567.ddns.net
+  - host: khedma123456789.ddns.net
     http:
       paths:
       - path: /
