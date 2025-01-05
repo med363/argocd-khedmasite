@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   dnsNames:
-    - temp1234567.ddns.net
+    - khedma123456789.ddns.net
   secretName: example-app-tls
   issuerRef:
     name: letsencrypt-cluster-issuer
