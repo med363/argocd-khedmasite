@@ -55,14 +55,14 @@ spec:
 #   type: ExternalName
 #   externalName: temp1234567.ddns.net
 # ---
-apiVersion: v1
-kind: Service
-metadata:
-  namespace: default
-  name: backend-service
-spec:
-  type: ExternalName
-  externalName: khedma123456789.ddns.net
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   namespace: default
+#   name: backend-service
+# spec:
+#   type: ExternalName
+#   externalName: khedma123456789.ddns.net
 # apiVersion: v1
 # kind: Service
 # metadata:
