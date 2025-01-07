@@ -5,10 +5,9 @@ metadata:
   namespace: default
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/proxy-body-size: "10m"  # Adjust size as needed
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      proxy_set_header Host "209.38.113.90"; 
-      proxy_set_header X-Forwarded-Host "209.38.113.90"; 
+      proxy_set_header Host "209.38.113.90"; # Ensures the original Host header is passed to the backend
+      proxy_set_header X-Forwarded-Host "209.38.113.90"; # Forwarding the host header for better routing visibility
 spec:
   ingressClassName: nginx
   tls:
@@ -27,11 +26,9 @@ spec:
             port:
               number: 80
       - path: /api/
-      # - path: /personne
         pathType: Prefix
         backend:
           service:
             name: backend-service  
             port:
               number: 80
-
