@@ -40,7 +40,7 @@ spec:
           #   - DEBUG=False
           volumeMounts:
             - name: media-volume-mount
-              mountPath: /django/khedma/media
+              mountPath: /django/khedma/media/images
       volumes:
         - name: media-volume-mount
           persistentVolumeClaim:
