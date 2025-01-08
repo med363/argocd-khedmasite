@@ -8,7 +8,6 @@ metadata:
     nginx.ingress.kubernetes.io/configuration-snippet: |
       proxy_set_header Host "209.38.113.90"; # Ensures the original Host header is passed to the backend
       proxy_set_header X-Forwarded-Host "209.38.113.90"; # Forwarding the host header for better routing visibility
-
 spec:
   ingressClassName: nginx
   tls:
@@ -33,11 +32,10 @@ spec:
             name: khedma  
             port:
               number: 80
-      # - path: /media/
-      #   pathType: Prefix
-      #   backend:
-      #     service:
-      #       exteramename: example-service  # Same backend service or another for static content
-      #       port:
-      #         number: 80
-
+      - path: /media/
+        pathType: Prefix
+        backend:
+          service:
+            name: media-service
+            port:
+              number: 80
