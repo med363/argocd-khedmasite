@@ -32,7 +32,7 @@ spec:
             name: khedma  
             port:
               number: 80
-      - path: /media/
+      - path: /media/images
         pathType: Prefix
         backend:
           service:
