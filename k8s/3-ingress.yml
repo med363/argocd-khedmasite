@@ -32,7 +32,7 @@ spec:
             name: khedma  
             port:
               number: 80
-      - path: 123456789.ddns.net/media/
+      - path: /media/
         pathType: Prefix
         backend:
           service:
