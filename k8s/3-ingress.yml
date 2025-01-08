@@ -29,6 +29,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: backend-service  
+            name: khedma  
             port:
               number: 80
