@@ -12,4 +12,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: /data/media-pv
+    path: /data/media-pv/
