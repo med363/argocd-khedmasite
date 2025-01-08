@@ -32,11 +32,11 @@ spec:
             name: khedma  
             port:
               number: 80
-      - path: /media/
-        pathType: Prefix
-        backend:
-          service:
-            name: khedma  # Same backend service or another for static content
-            port:
-              number: 80
+      # - path: /media/
+      #   pathType: Prefix
+      #   backend:
+      #     service:
+      #       name: khedma  # Same backend service or another for static content
+      #       port:
+      #         number: 80
 
