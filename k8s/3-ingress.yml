@@ -18,18 +18,17 @@ spec:
   - host: khedma123456789.ddns.net
     http:
       paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: example-service
-            port:
-              number: 80
-  # - host: khedma123456789.ddns.net
       - path: /api/
         pathType: Prefix
         backend:
           service:
             name: khedma  
+            port:
+              number: 80
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: example-service
             port:
               number: 80
