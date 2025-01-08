@@ -8,13 +8,6 @@ metadata:
     nginx.ingress.kubernetes.io/configuration-snippet: |
       proxy_set_header Host "209.38.113.90"; # Ensures the original Host header is passed to the backend
       proxy_set_header X-Forwarded-Host "209.38.113.90"; # Forwarding the host header for better routing visibility
-      location /media/ {
-        proxy_pass http://khedma123456789.ddns.net;
-        proxy_set_header Host khedma123456789.ddns.net;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Host $host;
-      }
 spec:
   ingressClassName: nginx
   tls:
