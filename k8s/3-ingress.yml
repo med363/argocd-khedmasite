@@ -36,7 +36,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: example-service  # Same backend service or another for static content
+            name: khedma  # Same backend service or another for static content
             port:
               number: 80
 
