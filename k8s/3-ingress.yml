@@ -32,11 +32,11 @@ spec:
             name: khedma  
             port:
               number: 80
-      - path: /media/
-        pathType: Prefix
-        backend:
-          service:
-            name: dummy-service # A dummy service as a placeholder
-            port:
-              number: 80
+      # - path: /media/
+      #   pathType: Prefix
+      #   backend:
+      #     service:
+      #       name: dummy-service # A dummy service as a placeholder
+      #       port:
+      #         number: 80
 
