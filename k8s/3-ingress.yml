@@ -29,7 +29,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: khedma  
+            name: we-tekup  
             port:
               number: 80
       # - path: /media/

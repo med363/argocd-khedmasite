@@ -68,7 +68,7 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: default
-  name: khedma
+  name: we-tekup
   labels:
     app: backend-app
 spec:
