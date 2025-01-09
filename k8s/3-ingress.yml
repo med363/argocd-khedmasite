@@ -36,6 +36,7 @@ spec:
       #   pathType: Prefix
       #   backend:
       #     service:
-      #       name: media-service
+      #       name: dummy-service # A dummy service as a placeholder
       #       port:
       #         number: 80
+
