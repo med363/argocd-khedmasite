@@ -28,17 +28,10 @@ spec:
         image: mohamedamineblibech/frontend:v1.279
         ports:
         - containerPort: 3000
-        env:
-        - name: REACT_APP_API_URL
-          value: "https://khedma123456789.ddns.net"
-        - name: REACT_APP_PUBLIC_FOLDER
-          value: "https://khedma123456789.ddns.net/media/images/"
-        - name: HOST
-          value: "0.0.0.0"
-        - name: PORT
-          value: "3000"
-        - name: DANGEROUSLY_DISABLE_HOST_CHECK
-          value: "true"
+        envFrom:
+        - configMapRef:
+          name: reactjs-config
+          # command:
         # command:
         # - sh
         # - -C

@@ -21,6 +21,9 @@ spec:
                 secretKeyRef:
                   name: kh-secret
                   key: POSTGRES_PASSWORD
+          envFrom:
+            - configMapRef:
+                name: django-config
           ports:
             - containerPort: 5432
           volumeMounts:
