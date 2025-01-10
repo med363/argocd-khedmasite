@@ -30,9 +30,9 @@ spec:
         - containerPort: 3000
         env:
         - name: REACT_APP_API_URL
-          value: "http://khedma123456789.ddns.net"
+          value: "https://khedma123456789.ddns.net"
         - name: REACT_APP_PUBLIC_FOLDER
-          value: "http://khedma123456789.ddns.net/media/images/"
+          value: "https://khedma123456789.ddns.net/media/images/"
         - name: HOST
           value: "0.0.0.0"
         - name: PORT
