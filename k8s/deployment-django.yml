@@ -24,6 +24,7 @@ spec:
       #           matchLabels:
       #             app: backend-app
       #         topologyKey: "kubernetes.io/hostname"
+      ##
       containers:
         - name: backend-app
           image: mohamedamineblibech/backend:v1.284
