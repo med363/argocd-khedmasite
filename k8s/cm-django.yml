@@ -13,3 +13,4 @@ data:
   SIMPLE_JWT_AUTH_HEADER_TYPES: "JWT"
   JWT_ACCESS_TOKEN_LIFETIME: "60"  # Access token lifetime in minutes
   JWT_REFRESH_TOKEN_LIFETIME: "1440"  # Refresh token lifetime in minutes#
+##
