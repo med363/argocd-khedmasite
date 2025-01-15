@@ -32,6 +32,14 @@ spec:
             name: we-tekup  
             port:
               number: 80
+      - path: /django/
+        pathType: Prefix
+        backend:
+          service:
+            name: we-tekup
+            port:
+              number: 80
+
       # - path: /media/
       #   pathType: Prefix
       #   backend:
