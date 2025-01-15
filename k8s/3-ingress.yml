@@ -25,9 +25,6 @@ spec:
             name: example-service
             port:
               number: 80
-  - host: khedma123456789.ddns.net
-    http:
-      paths:
       - path: /api/
         pathType: Prefix
         backend:
