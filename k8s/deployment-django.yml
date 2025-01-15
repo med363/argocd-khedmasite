@@ -16,15 +16,6 @@ spec:
         - name: dockerhub-secret
       securityContext:
         fsGroup: 1000
-      # hostname: backend-service
-      # affinity:
-      #   podAffinity:
-      #     requiredDuringSchedulingIgnoredDuringExecution:
-      #       - labelSelector:
-      #           matchLabels:
-      #             app: backend-app
-      #         topologyKey: "kubernetes.io/hostname"
-      ##
       containers:
         - name: backend-app
           image: mohamedamineblibech/backend:v1.314
@@ -35,23 +26,15 @@ spec:
                 name: kh-secret
             - configMapRef:
                 name: django-config
-          # command:
-          #   - sh
-          #   - -C
-          #   - DEBUG=False
           volumeMounts:
             - name: media-volume-mount
-              # mountPath: /django/khedma/media/images
               mountPath: /django/khedma/media
-          volumeMounts:
             - name: static-volume-mount
-              # mountPath: /django/khedma/media/images
               mountPath: /django/khedma/static
       volumes:
         - name: media-volume-mount
           persistentVolumeClaim:
             claimName: media-pvc-local
-      volumes:
         - name: static-volume-mount
           persistentVolumeClaim:
             claimName: static-pvc-local
@@ -64,7 +47,7 @@ metadata:
   labels:
     app: backend-app
 spec:
-  type: clusterIP
+  type: ClusterIP
   selector:
     app: backend-app
   ports:
@@ -72,6 +55,7 @@ spec:
       name: http
       port: 80
       targetPort: 80
+
 # ---
 # apiVersion: networking.k8s.io/v1
 # kind: Ingress
