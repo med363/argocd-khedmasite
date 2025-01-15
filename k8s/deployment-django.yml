@@ -81,7 +81,7 @@ metadata:
   labels:
     app: backend-app
 spec:
-  type: LoadBalancer
+  type: cluster
   selector:
     app: backend-app
   ports:
@@ -89,15 +89,15 @@ spec:
       name: http
       port: 80
       targetPort: 80
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: media-service
-#   namespace: default
-# spec:
-#   type: ExternalName
-#   externalName: khedma123456789.ddns.net
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: we-tekup
+  namespace: default
+spec:
+  type: ExternalName
+  externalName: khedma123456789.ddns.net
 
 # ---
 # apiVersion: v1
