@@ -68,9 +68,14 @@ metadata:
       proxy_set_header Host "209.38.113.90";
       proxy_set_header X-Forwarded-Host "209.38.113.90";
 spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - khedma123456789.ddns.net
+    secretName: example-app-tls
   rules:
-    - host: khedma123456789.ddns.net
-      http:
+  - host: khedma123456789.ddns.net
+    http: 
         paths:
           - path: /
             pathType: Prefix
