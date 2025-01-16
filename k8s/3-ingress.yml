@@ -66,7 +66,7 @@ spec:
     - khedma123456789.ddns.net
     secretName: example-app-tls
   rules:
-  - host: khedma123456789.ddns.net
+  - host: we-tekup
     http:
       paths:
       - path: /
