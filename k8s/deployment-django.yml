@@ -26,7 +26,7 @@ spec:
                 value: "80"
                 name: REACTJS_SERVICE_ADDR
                 # accesible using the service called and the port of service
-                value: "example-app:3000"
+                value: "example-app:80"
            
           envFrom:
             - secretRef:
