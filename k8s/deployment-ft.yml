@@ -31,7 +31,9 @@ spec:
           - env:
             name: PORT
             value: "3000"
-
+            name: DJANGO_SERVICE_ADDR
+            # accesible using the service called and the port of service
+            value: "we-tekup:80"
 
         envFrom:
         - configMapRef:
