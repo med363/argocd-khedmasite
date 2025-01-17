@@ -28,12 +28,12 @@ spec:
         image: mohamedamineblibech/frontend:v1.330
         ports:
         - containerPort: 3000
-          - env:
-            name: PORT
-            value: "3000"
-            name: DJANGO_SERVICE_ADDR
-            # accesible using the service called and the port of service
-            value: "we-tekup:80"
+          # - env:
+          #   name: PORT
+          #   value: "3000"
+          #   name: DJANGO_SERVICE_ADDR
+          #   # accesible using the service called and the port of service
+          #   value: "we-tekup:80"
 
         envFrom:
         - configMapRef:
