@@ -28,6 +28,11 @@ spec:
         image: mohamedamineblibech/frontend:v1.329
         ports:
         - containerPort: 3000
+          - env:
+            name: PORT
+            value: "3000"
+
+
         envFrom:
         - configMapRef:
             name: reactjs-config # Reference the correct ConfigMap name
