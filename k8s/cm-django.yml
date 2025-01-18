@@ -4,7 +4,7 @@ metadata:
   name: django-config
   namespace: default
 data:
-  DEBUG: "False"
+  DEBUG: "True"
   REDIS_HOST: "khedma-redis"
   DB_HOST: "postgres-service"
   # ALLOWED_HOSTS: "khedma123456789.ddns.net,we-tekup.default.svc.cluster.local,143.244.206.30,example-service"
