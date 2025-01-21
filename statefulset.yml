@@ -1,59 +1,56 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: django-deployment
-  # namespace: default
-###
+  name: postgres-statefulset
 spec:
-  replicas: 2
+  serviceName: postgres-headless-service
+  replicas: 1
   selector:
     matchLabels:
-      app: backend-app
+      app: postgres-container
   template:
     metadata:
       labels:
-        app: backend-app
+        app: postgres-container
     spec:
-      imagePullSecrets:
-        - name: dockerhub-secret
-      securityContext:
-        fsGroup: 1000
-      hostname: backend-service
-      # affinity:
-      #   podAffinity:
-      #     requiredDuringSchedulingIgnoredDuringExecution:
-      #       - labelSelector:
-      #           matchLabels:
-      #             app: backend-app
-      #         topologyKey: "kubernetes.io/hostname"
       containers:
-        - name: backend-app
-          image: mohamedamineblibech/backend:v1.155
-          ports:
-            - containerPort: 80
+        - name: postgres-container
+          image: postgres:15.3-alpine
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: kh-secret
+                  key: POSTGRES_PASSWORD
           envFrom:
-            - secretRef:
-                name: kh-secret
             - configMapRef:
                 name: django-config
+          ports:
+            - containerPort: 5432
           volumeMounts:
-            - name: media-volume-mount
-              mountPath: /django/khedma/media
-      volumes:
-        - name: media-volume-mount
-          persistentVolumeClaim:
-            claimName: media-pvc-local
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/db
+  volumeClaimTemplates:
+    - metadata:
+        name: postgres-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-service
-  namespace: default
+  name: postgres-headless-service
   labels:
-    app: backend-app
+    app: postgres-container
 spec:
-  type: ClusterIP
+  clusterIP: None
+  selector:
+    app: postgres-container
   ports:
     - protocol: TCP
-      port: 8080  # The port your backend is listening on (on the external server)
-      targetPort: 80
+      port: 5432
+      targetPort: 5432
