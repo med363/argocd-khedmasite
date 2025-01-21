@@ -15,13 +15,9 @@ spec:
       containers:
         - name: postgres-container
           image: postgres:15.3-alpine
-          env:
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: kh-secret
-                  key: POSTGRES_PASSWORD
           envFrom:
+            - secretRef:
+                name: kh-secret
             - configMapRef:
                 name: django-config
           ports:
