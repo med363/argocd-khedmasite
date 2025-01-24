@@ -1,8 +1,9 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: postgres-deployment
+  name: postgres-statefulset
 spec:
+  serviceName: postgres-headless-service
   replicas: 1
   selector:
     matchLabels:
@@ -27,18 +28,26 @@ spec:
           ports:
             - containerPort: 5432
           volumeMounts:
-            - name: postgres-volume-mount
+            - name: postgres-data
               mountPath: /var/lib/postgresql/data
-      volumes:
-        - name: postgres-volume-mount
-          persistentVolumeClaim:
-            claimName: postgres-pvc-local
+  volumeClaimTemplates:
+    - metadata:
+        name: postgres-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres-service
+  name: postgres-headless-service
+  labels:
+    app: postgres-container
 spec:
+  clusterIP: None
   selector:
     app: postgres-container
   ports:
