@@ -20,7 +20,7 @@ spec:
         - name: backend-app
           image: mohamedamineblibech/backend:v1.384
           ports:
-            - containerPort: 8000
+            - containerPort: 80
               # - env:
               #   name: PORT
               #   value: "80"
@@ -61,7 +61,7 @@ spec:
     - protocol: TCP
       name: http
       port: 80
-      targetPort: 8000
+      targetPort: 80
 
 # ---
 # apiVersion: networking.k8s.io/v1
